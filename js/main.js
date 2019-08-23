@@ -62,19 +62,32 @@ function render() {
     let chart = document.querySelector(".GraphArea");
     let rates = (Object.entries(state.data.rates))
     //console.log(state.data.rates.CAD)
-
-    chart.innerHTML = ""    ;
-
-    for (const[key, value] of rates) {
-        rateHeight = 80 / value
-        //console.log(rateHeight)
-        chart.innerHTML += `
-            <div class="GraphArea--barChart" style="height: ${rateHeight}%">
-                ${key} ${value}
-            </div>
-        `
-    }
-    
+    let cadrate = 80 / state.data.rates.CAD;
+    let usdrate = 80 / state.data.rates.USD;
+    let nokrate = 80 / state.data.rates.NOK;
+    let audrate = 80 / state.data.rates.AUD;
+    let eurrate = 80 / state.data.rates.EUR;
+    let gbprate = 80 / state.data.rates.GBP;
+    chart.innerHTML = `
+        <div class="GraphArea--barChart" style="height: ${audrate}%">
+            AUD ${state.data.rates.AUD}
+        </div>
+        <div class="GraphArea--barChart" style="height: ${cadrate}%">
+            CAD ${state.data.rates.CAD}
+        </div>
+        <div class="GraphArea--barChart" style="height: ${eurrate}%">
+            EUR ${state.data.rates.EUR}
+        </div>
+        <div class="GraphArea--barChart" style="height: ${gbprate}%">
+            GBP ${state.data.rates.GBP}
+        </div>
+        <div class="GraphArea--barChart" style="height: ${nokrate}%">
+            NOK ${state.data.rates.NOK}
+        </div>
+        <div class="GraphArea--barChart" style="height: ${usdrate}%">
+            USD ${state.data.rates.USD}
+        </div>
+    `;
 
 }
 
