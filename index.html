@@ -19,25 +19,15 @@
                 <div class="MainTitle">
                     <h1 class="MainTitle--title">The Exchanger</h1>
                     <p class="MainTitle--baseInfo">Select your base currency:</p>
-                    <select class="MainTitle--baseInfo" id="baseCurrency" onchange="printBase()">
-                        <option value="eur">EUR</option>
-                        <option value="usd">USD</option>
+                    <select class="MainTitle--baseInfo" id="baseCurrency" onChange='doFetch()'>
+                        <option value="Choose">Choose a Base</option>
+                        <option value="EUR">EUR</option>
+                        <option value="USD">USD</option>
                     </select>
                 </div>
             <!-- Graph Area  -->
                 <div class="GraphArea">
-                    <div onClick="alert('1 EUR = 1 EUR')"
-                     class="GraphArea--barChart" style="height: 80%">EUR €</div>
-                    <div onClick="alert('1 EUR = 1.1194 USD')"
-                    class="GraphArea--barChart" style="height: 71.5%">USD $</div>
-                    <div onClick="alert('1 EUR = 1.4807 CAD')"
-                    class="GraphArea--barChart" style="height: 54%">CAD $</div>
-                    <div onClick="alert('1 EUR = 0.92615 GBP')"
-                    class="GraphArea--barChart" style="height: 86.4%">GBP £</div>
-                    <div onClick="alert('1 EUR = 1.6589 AUD')"
-                    class="GraphArea--barChart" style="height: 48.2%">AUD $</div>
-                    <div onClick="alert('1 EUR = 10.0003 NOK')"
-                    class="GraphArea--barChart" style="height: 8%">NOK kr</div>
+
                 </div>
         </div>
 

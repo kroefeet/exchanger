@@ -20,7 +20,6 @@
     padding: 20px;
     background-color: #00688B;
     color: var(--text-color);
-    filter: drop-shadow(30px 10px 4px grey);
     display: flex;
     align-items: center;
 
@@ -65,6 +64,30 @@
     transform: perspective(200px) translate3D(0em, -.2em, .5em);
     filter: contrast(150%) drop-shadow(8px 8px 10px gray);
 
+}
+
+.GraphArea--currencySelector {
+    display: grid;
+    grid-template-columns: repeat(17, 1fr);
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+    align-items: middle;
+}
+
+.GraphArea--currencySelector input[type=checkbox] {
+    display: none;
+}
+
+.GraphArea--currencySelector span {
+    display: block;
+    text-align: center;
+}
+
+.GraphArea--currencySelector input:checked + span {
+    background-color: var(--highlight);
+    color: var(--text);
+    border: 2px solid var(--highlight-dark);
+    box-sizing: border-box;
 }
 
 /* changing size of Title Bar text to account for wordwrap */
