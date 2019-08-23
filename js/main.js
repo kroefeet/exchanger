@@ -4,11 +4,11 @@ let state = {
     // Just some placeholder data until we add real data...
     data: [
             {rates: {
-                EUR: 1,
-                CAD: 1.4761,
-                HKD: 8.7072,
-                NOK: 9.9263,
-                USD: 1.1104
+                "EUR": 1,
+                "CAD": 1.4761,
+                "HKD": 8.7072,
+                "NOK": 9.9263,
+                "USD": 1.1104
             }},
             {base: "EUR"},        ,
     ],
@@ -28,9 +28,7 @@ function doFetch() {
             state.data = data;
 
             displayOutput();
-            //chooser();
-
-            // TODO: Call a funciton to do something with this data
+            chooser();
             render();
         });
     }
@@ -68,39 +66,57 @@ function render() {
     chart.innerHTML = ""    ;
 
     for (const[key, value] of rates) {
-        rateHeight = 70 / value
+        rateHeight = 80 / value
         //console.log(rateHeight)
         chart.innerHTML += `
             <div class="GraphArea--barChart" style="height: ${rateHeight}%">
-                ${key}
+                ${key} ${value}
             </div>
         `
     }
+    
+
 }
 
 
 function printBase() {
     let selection = document.querySelector('#baseCurrency');
     newBase = selection.value
+
     return newBase;
 
 }
-/*
-
 
 function chooser() {
-    console.log('displayChooser function')
-    let output = document.querySelector('.currencySelector');
+    //console.log('displayChooser function')
+    let output = document.querySelector('.Chooser-choices');
+    let choices = (Object.keys(state.data.rates))
     output.innerHTML = '';
-    let bases = (Object.keys(state.data.rates));
-    for (const base of bases) {
-        console.log(base);
-        let chosen = document.createElement('label');
-        let t = document.createTextNode(base);
-        chosen.appendChild(t);
 
-        output.appendChild(chosen)
+    for (const choice of choices) {
+        console.log(choice);
+        let label = document.createElement("label");
+        let checkbox = document.createElement('input');
+        let t = document.createTextNode(choice);
+        checkbox.setAttribute("type", "checkbox")
+
+
+        checkbox.name = 'chooser';
+        checkbox.value = t;
+        label.appendChild(checkbox);
+        label.appendChild(t);
+        output.appendChild(label);
 
         }
-    }
+}
+/*
+for (const[key, value] of rates) {
+    rateHeight = 80 / value
+    //console.log(rateHeight)
+    chart.innerHTML += `
+        <div class="GraphArea--barChart" style="height: ${rateHeight}%">
+            ${key} ${value}
+        </div>
+    `
+}
 */
