@@ -44,7 +44,7 @@ function displayOutput() {
 
 
     for (const base of bases) {
-        //console.log(base);
+
         let options = document.createElement('option');
         let t = document.createTextNode(base);
         options.appendChild(t);
@@ -61,8 +61,10 @@ function displayOutput() {
 function render() {
     let chart = document.querySelector(".GraphArea");
     let rates = (Object.entries(state.data.rates))
+    let chosen = ["CAD", "USD", "NOK", "AUD", "EUR", "GBP"]
     let maxSet = 80 * state.data.rates.GBP;
-    //console.log(state.data.rates.CAD)
+
+
     let cadrate = maxSet / state.data.rates.CAD;
     let usdrate = maxSet / state.data.rates.USD;
     let nokrate = maxSet / state.data.rates.NOK;
