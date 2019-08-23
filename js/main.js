@@ -1,7 +1,6 @@
-console.log('you are in the console')
 
 let state = {
-    // Just some placeholder data until we add real data...
+
     data: [
             {rates: {
                 "EUR": 1,
@@ -14,16 +13,16 @@ let state = {
     ],
 };
 
-
+// Fetch the data and run the other methods
 function doFetch() {
-    console.log('doFetch engaged');
+
     printBase();
-    //console.log(newBase);
+
 
     fetch(`https://api.exchangeratesapi.io/latest?base=${newBase}`)
         .then(response => response.json())
         .then(data => {
-            console.log('Got the data!');
+
             console.log(data);
             state.data = data;
 
@@ -35,7 +34,7 @@ function doFetch() {
 
 
 
-
+// This function populates the drowpdown list with currencies returned from API
 function displayOutput() {
     console.log(newBase)
     let output = document.querySelector('#baseCurrency');
@@ -54,20 +53,22 @@ function displayOutput() {
         output.appendChild(options)
 
         }
-        /*    */
+
     }
 
-
+// This method renders the bar charts
+// Needs work on limiting and selecting different currencies
 function render() {
     let chart = document.querySelector(".GraphArea");
     let rates = (Object.entries(state.data.rates))
+    let maxSet = 80 * state.data.rates.GBP;
     //console.log(state.data.rates.CAD)
-    let cadrate = 80 / state.data.rates.CAD;
-    let usdrate = 80 / state.data.rates.USD;
-    let nokrate = 80 / state.data.rates.NOK;
-    let audrate = 80 / state.data.rates.AUD;
-    let eurrate = 80 / state.data.rates.EUR;
-    let gbprate = 80 / state.data.rates.GBP;
+    let cadrate = maxSet / state.data.rates.CAD;
+    let usdrate = maxSet / state.data.rates.USD;
+    let nokrate = maxSet / state.data.rates.NOK;
+    let audrate = maxSet / state.data.rates.AUD;
+    let eurrate = maxSet / state.data.rates.EUR;
+    let gbprate = maxSet / state.data.rates.GBP;
     chart.innerHTML = `
         <div class="GraphArea--barChart" style="height: ${audrate}%">
             AUD ${state.data.rates.AUD}
@@ -91,7 +92,7 @@ function render() {
 
 }
 
-
+// This method captures the choice from the dropdown
 function printBase() {
     let selection = document.querySelector('#baseCurrency');
     newBase = selection.value
@@ -100,14 +101,17 @@ function printBase() {
 
 }
 
+//This method generates the checkboxes for changing displayed currencies
+//Currently not functioning
+
 function chooser() {
-    //console.log('displayChooser function')
+
     let output = document.querySelector('.Chooser-choices');
     let choices = (Object.keys(state.data.rates))
     output.innerHTML = '';
 
     for (const choice of choices) {
-        console.log(choice);
+
         let label = document.createElement("label");
         let checkbox = document.createElement('input');
         let t = document.createTextNode(choice);
@@ -122,14 +126,3 @@ function chooser() {
 
         }
 }
-/*
-for (const[key, value] of rates) {
-    rateHeight = 80 / value
-    //console.log(rateHeight)
-    chart.innerHTML += `
-        <div class="GraphArea--barChart" style="height: ${rateHeight}%">
-            ${key} ${value}
-        </div>
-    `
-}
-*/
